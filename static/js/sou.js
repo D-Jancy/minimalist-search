@@ -9,91 +9,91 @@ github：https://github.com/5iux/sou
 github：https://github.com/yeetime/sou2
 日期：2019-12-13
 Modified by Holger Huo
-https://holger.one/
+https://blog.holger.net.cn/
 Apr.11 2020
 */
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     //搜索引擎列表【预设】
     var se_list_preinstall = {
-        '1':{
-            id      :1,
-            title   :"Google",
-            url     :"https://www.google.com/search",
-            name    :"q",
-            img     :"./static/icon/google_1.png",
+        '1': {
+            id: 1,
+            title: "Google",
+            url: "https://www.google.com/search",
+            name: "q",
+            img: "./static/icon/google_1.png",
 
         },
-        '2':{
-            id      :2,
-            title   :"百度",
-            url     :"https://www.baidu.com/s",
-            name    :"wd",
-            img     :"./static/icon/baidu.ico",
+        '2': {
+            id: 2,
+            title: "百度",
+            url: "https://www.baidu.com/s",
+            name: "wd",
+            img: "./static/icon/baidu.ico",
         },
-        '3':{
-            id      :3,
-            title   :"Bing CN",
-            url     :"https://cn.bing.com/search",
-            name    :"q",
-            img     :"./static/icon/bing.ico",
+        '3': {
+            id: 3,
+            title: "Bing CN",
+            url: "https://cn.bing.com/search",
+            name: "q",
+            img: "./static/icon/bing.ico",
         },
-        '4':{
-            id      :4,
-            title   :"多吉",
-            url     :"https://www.dogedoge.com/results",
-            name    :"q",
-            img     :"./static/icon/doge_ico.png",
+        '4': {
+            id: 4,
+            title: "多吉",
+            url: "https://www.dogedoge.com/results",
+            name: "q",
+            img: "./static/icon/doge_ico.png",
         },
-        '5':{
-            id      :5,
-            title   :"秘迹",
-            url     :"https://mijisou.com",
-            name    :"q",
-            img     :"./static/icon/mijisou.png",
+        '5': {
+            id: 5,
+            title: "秘迹",
+            url: "https://mijisou.com",
+            name: "q",
+            img: "./static/icon/mijisou.png",
         },
-        '6':{
-            id      :6,
-            title   :"seeres*",
-            url     :"https://seeres.com/search",
-            name    :"q",
-            img     :"./static/icon/seeres.png",
+        '6': {
+            id: 6,
+            title: "seeres*",
+            url: "https://seeres.com/search",
+            name: "q",
+            img: "./static/icon/seeres.png",
         },
     };
 
     //主页快捷方式【预设】
     var quick_list_preinstall = {
-        '1':{
-            title   :"Blog",
-            url     :"https://holger.one/",
-            img     :"https://mravatar.r669.live/avatar/holgerhuo@dragon-fly.club?no-cache=true&proxied=true",
-            explain :"Holger's Blog",
+        '1': {
+            title: "My CSDN",
+            url: "https://blog.csdn.net/qq_43175022",
+            img: "./static/icon/CSDN.ico",
+            explain: "My CSDN",
         },
-        '2':{
-            title   :"Island",
-            url     :"https://mast.dragon-fly.club",
-            img     :"https://mast.dragon-fly.club/favicon.ico",
-            explain :"Island 岛屿 | 一座属于你的岛屿",
+        '2': {
+            title: "My cnblogs",
+            url: "https://home.cnblogs.com/u/jancy2265/",
+            img: "./static/icon/cnblogs.ico",
+            explain: "My cnblogs",
 
         },
-        '3':{
-            title   :"V2EX",
-            url     :"https://www.v2ex.com/",
-            img     :"./static/icon/v2ex.png",
-            explain :"V2EX",
+        '3': {
+            title: "My GitHub",
+            url: "https://github.com/D-Jancy",
+            img: "./static/icon/github.ico",
+            explain: "My cnblogs",
         },
-        '4':{
-            title   :"Steam",
-            url     :"https://store.steampowered.com/",
-            img     :"./static/icon/steam.ico",
-            explain :"Steam",
+        '4': {
+            title: "My Demo",
+            url: "https://jancy.cool/media",
+            img: "./static/images/icon-300x300.jpg",
+            explain: "My MediaDemo",
         },
-        '5':{
-            title   :"GitHub",
-            url     :"https://github.com/",
-            img     :"./static/icon/github.ico",
-            explain :"GitHub",
+        '5': {
+            title: "My Blog",
+            url: "https://blog.jancy.cool/",
+            img: "./static/Images/blog.jpg",
+            explain: "My Blog",
         },
     };
 
@@ -107,7 +107,7 @@ $(document).ready(function() {
     var wid = $("body").width();
     if (wid < 640) {
         $(".wd").attr('autocomplete', 'off');
-    }else{
+    } else {
         $(".wd").focus();
     }
 
@@ -119,31 +119,31 @@ $(document).ready(function() {
     //获取搜索引擎列表
     function getSeList() {
         var se_list_local = Cookies.get('se_list');
-        if (se_list_local !== "{}"&&se_list_local) {
+        if (se_list_local !== "{}" && se_list_local) {
             return JSON.parse(se_list_local);
         } else {
-            setSeList (se_list_preinstall);
+            setSeList(se_list_preinstall);
             return se_list_preinstall;
         }
     }
 
     //设置搜索引擎列表
-    function setSeList (se_list) {
-        if(se_list){
-           Cookies.set('se_list', se_list, { expires: 36500 });
-           return true;
+    function setSeList(se_list) {
+        if (se_list) {
+            Cookies.set('se_list', se_list, {expires: 36500});
+            return true;
         }
         return false;
     }
 
     //选择搜索引擎点击事件
-    $(document).on('click',function(e){
-        if($(".search-engine").is(":hidden") && $(".se").is(e.target)){
+    $(document).on('click', function (e) {
+        if ($(".search-engine").is(":hidden") && $(".se").is(e.target)) {
             if ($(".se").is(e.target)) {
                 seList();
                 $(".search-engine").show();
             }
-        }else{
+        } else {
             if (!$(".search-engine").is(e.target) && $(".search-engine").has(e.target).length === 0) {
                 $(".search-engine").hide();
             }
@@ -151,22 +151,22 @@ $(document).ready(function() {
     });
 
     //搜索引擎列表点击
-    $(".search-engine-list").on("click",".se-li",function(){
+    $(".search-engine-list").on("click", ".se-li", function () {
         var url = $(this).attr('url');
         var name = $(this).attr('name');
         var img = $(this).attr('img');
-        $(".search").attr("action",url);
-        $(".wd").attr("name",name);
-        $(".se").attr("src",img);
+        $(".search").attr("action", url);
+        $(".wd").attr("name", name);
+        $(".se").attr("src", img);
         $(".search-engine").hide();
     });
 
     //菜单点击
-    $("#menu").click(function(event) {
+    $("#menu").click(function (event) {
         $(this).toggleClass('on');
         $(".side").toggleClass('closed');
     });
-    $("#content").click(function(event) {
+    $("#content").click(function (event) {
         $(".on").removeClass('on');
         $(".side").addClass('closed');
     });
@@ -178,24 +178,24 @@ $(document).ready(function() {
     });
 
     //修改默认搜索引擎
-    $(".se_list_table").on("click",".set_se_default",function(){
+    $(".se_list_table").on("click", ".set_se_default", function () {
         var name = $(this).val();
-        Cookies.set('se_default', name, { expires: 36500 });
+        Cookies.set('se_default', name, {expires: 36500});
         setSeInit();
     });
 
     //获得默认搜索引擎
-    function getSeDefault(){
+    function getSeDefault() {
         var se_default = Cookies.get('se_default');
-        return se_default?se_default:1;
+        return se_default ? se_default : 1;
     }
 
     //搜索框数据加载
     function searchData() {
-        var se_default =getSeDefault();
+        var se_default = getSeDefault();
         var se_list = getSeList();
         var defaultSe = se_list[se_default];
-        if (defaultSe){
+        if (defaultSe) {
             $(".search").attr("action", defaultSe["url"]);
             $(".se").attr("src", defaultSe["img"]);
             $(".wd").attr("name", defaultSe["name"]);
@@ -207,24 +207,24 @@ $(document).ready(function() {
     function seList() {
         var html = "";
         var se_list = getSeList();
-        for(var i in se_list){
-            html+="<li style='float: left; width: 80px!important; height: 30px!important; line-height: 30px; text-align: left; font-size: 14px; left: 15px; padding: 5px 10px 5px 10px; margin: 0 10px 10px 0; cursor: pointer; list-style: none; position: relative; border-radius: 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;' class='se-li' url='"+se_list[i]["url"]+"' name='"+se_list[i]["name"]+"' img='"+se_list[i]["img"]+"'><img src='"+se_list[i]["img"]+"'></img>"+se_list[i]["title"]+"</li>";
+        for (var i in se_list) {
+            html += "<li style='float: left; width: 80px!important; height: 30px!important; line-height: 30px; text-align: left; font-size: 14px; left: 15px; padding: 5px 10px 5px 10px; margin: 0 10px 10px 0; cursor: pointer; list-style: none; position: relative; border-radius: 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;' class='se-li' url='" + se_list[i]["url"] + "' name='" + se_list[i]["name"] + "' img='" + se_list[i]["img"] + "'><img src='" + se_list[i]["img"] + "'></img>" + se_list[i]["title"] + "</li>";
         }
         $(".search-engine-list").html(html);
     }
 
     //设置-搜索引擎列表加载
-    function setSeInit () {
+    function setSeInit() {
         var se_default = getSeDefault();
-        var se_list  = getSeList();
+        var se_list = getSeList();
         var html = "";
-        for(var i in se_list){
+        for (var i in se_list) {
             var tr = "<tr><td></td>";
-            if(i == se_default){
-                tr ="<tr><td><span class='iconfont iconhome'></span></td>";
+            if (i == se_default) {
+                tr = "<tr><td><span class='iconfont iconhome'></span></td>";
             }
-            tr += "<td>"+i+". "+ se_list[i]["title"] +"</td><td><button class='set_se_default' value='"+i+"'><span class='iconfont iconstrore-add'></span></button><button class='edit_se' value='"+i+"'><span class='iconfont iconbook-edit'></span></button> <button class='delete_se' value='"+i+"'><span class='iconfont icondelete'></span></button></td></tr>";
-            html+=tr;
+            tr += "<td>" + i + ". " + se_list[i]["title"] + "</td><td><button class='set_se_default' value='" + i + "'><span class='iconfont iconstrore-add'></span></button><button class='edit_se' value='" + i + "'><span class='iconfont iconbook-edit'></span></button> <button class='delete_se' value='" + i + "'><span class='iconfont icondelete'></span></button></td></tr>";
+            html += tr;
         }
         $(".se_list_table").html(html);
     }
@@ -245,15 +245,15 @@ $(document).ready(function() {
         var img = $(".se_add_content input[name='img']").val();
 
         var num = /^\+?[1-9][0-9]*$/;
-        if (!num.test(key)){
-            alert("Sequence "+key+" is invalid!");
+        if (!num.test(key)) {
+            alert("Sequence " + key + " is invalid!");
             return;
         }
 
         var se_list = getSeList();
 
         if (se_list[key]) {
-            alert("Sequence "+key+" has been taken!");
+            alert("Sequence " + key + " has been taken!");
             return;
         }
 
@@ -279,7 +279,7 @@ $(document).ready(function() {
     });
 
     //搜索引擎修改
-    $(".se_list").on("click",".edit_se",function(){
+    $(".se_list").on("click", ".edit_se", function () {
 
         var se_list = getSeList();
         var key = $(this).val();
@@ -294,13 +294,13 @@ $(document).ready(function() {
     });
 
     //搜索引擎删除
-    $(".se_list").on("click",".delete_se",function(){
+    $(".se_list").on("click", ".delete_se", function () {
         var se_default = getSeDefault();
         var key = $(this).val();
-        if (key==se_default){
+        if (key == se_default) {
             alert("Cannot delete default search engine!");
         } else {
-            var r = confirm("Delete sequence "+key+" ?");
+            var r = confirm("Delete sequence " + key + " ?");
             if (r) {
                 var se_list = getSeList();
                 delete se_list[key];
@@ -312,12 +312,12 @@ $(document).ready(function() {
 
     //恢复预设搜索引擎
     $(".set_se_list_preinstall").click(function () {
-         var r=confirm("Current settings will be removed! (You'd better backup before performing this)");
-         if (r) {
-             setSeList (se_list_preinstall);
-             Cookies.set('se_default', 1, { expires: 36500 });
-             setSeInit();
-         }
+        var r = confirm("Current settings will be removed! (You'd better backup before performing this)");
+        if (r) {
+            setSeList(se_list_preinstall);
+            Cookies.set('se_default', 1, {expires: 36500});
+            setSeInit();
+        }
     });
 
     //获取快捷方式列表
@@ -333,9 +333,9 @@ $(document).ready(function() {
 
     //设置快捷方式列表
     function setQuickList(quick_list) {
-        if(quick_list){
-           Cookies.set('quick_list', quick_list, {expires: 36500});
-           return true;
+        if (quick_list) {
+            Cookies.set('quick_list', quick_list, {expires: 36500});
+            return true;
         }
         return false;
     }
@@ -345,10 +345,10 @@ $(document).ready(function() {
         var html = "";
         var quick_list = getQuickList();
         for (var i in quick_list) {
-            html += "<li class='quick' target='_blank' title='"+quick_list[i]['explain']+"'>\
-                        <a class='quick_div_a' target=_blank href='"+quick_list[i]['url']+"'>\
-                            <i style='background-image: url("+quick_list[i]['img']+");'></i><div id='txtq'>\
-                            "+quick_list[i]['title']+"\</div>\
+            html += "<li class='quick' target='_blank' title='" + quick_list[i]['explain'] + "'>\
+                        <a class='quick_div_a' target=_blank href='" + quick_list[i]['url'] + "'>\
+                            <i style='background-image: url(" + quick_list[i]['img'] + ");'></i><div id='txtq'>\
+                            " + quick_list[i]['title'] + "\</div>\
                         </a>\
                      </li>";
         }
@@ -356,21 +356,21 @@ $(document).ready(function() {
     }
 
     //设置-快捷方式加载
-    function setQuickInit () {
+    function setQuickInit() {
 
-        var quick_list  = getQuickList();
+        var quick_list = getQuickList();
         var html = "";
-        for(var i in quick_list){
-            tr ="<tr>\
-                    <td>"+i+".&nbsp;</td>\
-                    <td>"+quick_list[i]['title']+"</td>\
+        for (var i in quick_list) {
+            tr = "<tr>\
+                    <td>" + i + ".&nbsp;</td>\
+                    <td>" + quick_list[i]['title'] + "</td>\
                     <td>\
-                        <button class='edit_quick' value='"+i+"'><span class='iconfont iconbook-edit'></span></button>\
+                        <button class='edit_quick' value='" + i + "'><span class='iconfont iconbook-edit'></span></button>\
                         &nbsp;\
-                        <button class='delete_quick' value='"+i+"'><span class='iconfont icondelete'></span></button>\
+                        <button class='delete_quick' value='" + i + "'><span class='iconfont icondelete'></span></button>\
                     </td>\
                 </tr>";
-            html+=tr;
+            html += tr;
         }
         $(".quick_list_table").html(html);
     }
@@ -390,15 +390,15 @@ $(document).ready(function() {
         var img = $(".quick_add_content input[name='img']").val();
 
         var num = /^\+?[1-9][0-9]*$/;
-        if (!num.test(key)){
-            alert("Sequence "+key+" is invalid!");
+        if (!num.test(key)) {
+            alert("Sequence " + key + " is invalid!");
             return;
         }
 
         var quick_list = getQuickList();
 
         if (quick_list[key]) {
-            alert("Sequence "+key+" has been taken!");
+            alert("Sequence " + key + " has been taken!");
             return;
         }
 
@@ -423,15 +423,15 @@ $(document).ready(function() {
 
     //恢复预设快捷方式
     $(".set_quick_list_preinstall").click(function () {
-         var r=confirm("Current settings will be removed! (You'd better backup before performing this)");
-         if (r) {
-             setQuickList (quick_list_preinstall);
-             setQuickInit();
-         }
+        var r = confirm("Current settings will be removed! (You'd better backup before performing this)");
+        if (r) {
+            setQuickList(quick_list_preinstall);
+            setQuickInit();
+        }
     });
 
     //快捷方式修改
-    $(".quick_list").on("click",".edit_quick",function(){
+    $(".quick_list").on("click", ".edit_quick", function () {
 
         var quick_list = getQuickList();
         var key = $(this).val();
@@ -445,11 +445,11 @@ $(document).ready(function() {
     });
 
     //快捷方式删除
-    $(".quick_list").on("click",".delete_quick",function(){
+    $(".quick_list").on("click", ".delete_quick", function () {
 
         var key = $(this).val();
 
-        var r = confirm("Delete sequence "+key+" ?");
+        var r = confirm("Delete sequence " + key + " ?");
         if (r) {
             var quick_list = getQuickList();
             delete quick_list[key];
@@ -458,47 +458,4 @@ $(document).ready(function() {
         }
     });
 
-    //我的数据导出
-    $("#my_data_out").click(function () {
-        var se = getSeList();
-        var se_default = getSeDefault();
-        var quick = getQuickList();
-
-        var mydata = {"se":se,"se_default":se_default,"quick":quick};
-        var json = JSON.stringify(mydata);
-        $("#data_txt").val(json);
-    });
-
-    //我的数据导入
-    $("#my_data_in").click(function () {
-        var json = $("#data_txt").val();
-
-        //json 格式校验
-        try {
-            var mydata = JSON.parse(json);
-        } catch (e) {
-            alert("Invalid backup!");
-            black;
-        }
-        if (typeof mydata != 'object') {
-            alert("Invalid format!");
-            black;
-        }
-
-        if(confirm("Current settings will be erased, continue?")){
-            setSeList(mydata["se"]);
-            if (mydata["se_default"]) {
-                Cookies.set('se_default', mydata["se_default"], {expires: 36500});
-            }
-            setQuickList(mydata["quick"]);
-
-            searchData();
-            quickData();
-            setSeInit();
-            setQuickInit();
-
-            alert("Success!");
-        }
-
-    });
 });

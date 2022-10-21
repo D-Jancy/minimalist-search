@@ -3,12 +3,12 @@
 /*
 Night mode for sou2
 Author:Holger Huo
-https://holger.one/
+https://blog.holger.net.cn/
 Apr.11 2020
 */
 
 /*
-    Copyright 2020 Holger https://holger.one Under GPLv3.0 @ https://github.com/holgerhuo/minimalist-search
+    Copyright 2020 Holger https://holger.net.cn Under GPLv3.0 @ https://github.com/holgerhuo/minimalist-search
 */
 
 * {
@@ -89,10 +89,10 @@ a {
 
 .con .shlogo {
     position: relative;
-    width: 120px;
+    width: 375px;
     height: 120px;
     margin: 5px auto;
-    background: url(avatar_night.png) no-repeat center/cover;
+    background: url("logo.png") no-repeat center/cover;
 }
 
 .con .shlogo a {
@@ -676,7 +676,7 @@ a.quick_div_a {
         top: 0px;
     }
     .con .shlogo {
-        width: 100px;
+        width: 312.5px;
         height: 100px;
     }
     .con .sou form button {
