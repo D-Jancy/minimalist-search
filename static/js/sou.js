@@ -92,7 +92,7 @@ $(document).ready(function () {
         '5': {
             title: "My Blog",
             url: "https://blog.jancy.cool/",
-            img: "./static/Images/blog.jpg",
+            img: "./static/images/blog.jpg",
             explain: "My Blog",
         },
     };
